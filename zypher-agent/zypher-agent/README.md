@@ -30,8 +30,24 @@ cd 'C:\Users\DELL\Downloads\zypher-agent\zypher-agent'
 Copy-Item .env.example .env
 # edit .env and set OPENAI_API_KEY
 
-# Run the provided helper which sets ZYPHER_HOME to a project-local .zypher and runs the app
-.\run.ps1
+# Zypher Agent - Quick Start
+
+Get Zypher Agent running in under 5 minutes. This guide shows the essential steps to create your first AI agent.
+
+## Prerequisites
+
+- **Deno 2.0+** ([install here](https://deno.land/))
+- **API Keys**
+  - Anthropic API key ([console.anthropic.com](https://console.anthropic.com/))
+  - Firecrawl API key ([firecrawl.dev](https://firecrawl.dev/))
+  - Note: Anthropic is used in this example, but you can use OpenAI or other providers.
+
+## Step 1: Install Zypher Agent
+
+```bash
+deno add jsr:@corespeed/zypher
+deno add npm:rxjs-for-await
+
 ```
 
 If you prefer to run manually without the helper, run with minimal permissions:
@@ -39,6 +55,8 @@ If you prefer to run manually without the helper, run with minimal permissions:
 ```powershell
 $env:ZYPHER_HOME = Join-Path (Get-Location) '.zypher'
 deno run --unstable --allow-net --allow-env --allow-write main.ts
+can also use
+deno run -A main.ts
 ```
 
 If you want to use the existing `deno task start` which grants all permissions, run:
@@ -51,3 +69,4 @@ deno task start
 
 - `ZYPHER_HOME` controls where Zypher will create its runtime directory. The code respects `ZYPHER_HOME` if set; otherwise it falls back to HOME / USERPROFILE / project cwd.
 - The helper `run.ps1` ensures a safe project-local `.zypher` directory is used and that Deno exists before running.
+
